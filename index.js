@@ -92,7 +92,10 @@ items.forEach(item => {
 document.getElementById("reset").addEventListener("click", () => {
     board.fill(null);
     currentPlayer = "X";
-    items.forEach(item => item.textContent = "");
+    items.forEach(item => {
+        item.textContent = "";
+        item.classList.remove("x", "o");
+    });
     statusEl.textContent = "Player X's turn";
     updateStatusColor();
     gameOver = false;
