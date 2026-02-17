@@ -6,38 +6,17 @@ let oScore = 0;
 
 const scoreXEl = document.getElementById("scoreX");
 const scoreOEl = document.getElementById("scoreO");
-
-
 const items = document.querySelectorAll(".item")
 const statusEl = document.getElementById("status")
 
 
-function checkWin(currentPlayer) {
-    if (board[0] === currentPlayer && board[1] === currentPlayer && board[2] === currentPlayer) {
-        return true;
-    }
-    if (board[3] === currentPlayer && board[4] === currentPlayer && board[5] === currentPlayer) {
-        return true;
-    }
-    if (board[6] === currentPlayer && board[7] === currentPlayer && board[8] === currentPlayer) {
-        return true;
-    }
-    if (board[0] === currentPlayer && board[3] === currentPlayer && board[6] === currentPlayer) {
-        return true;
-    }
-    if (board[1] === currentPlayer && board[4] === currentPlayer && board[7] === currentPlayer) {
-        return true;
-    }
-    if (board[2] === currentPlayer && board[5] === currentPlayer && board[8] === currentPlayer) {
-        return true;
-    }
-    if (board[0] === currentPlayer && board[4] === currentPlayer && board[8] === currentPlayer) {
-        return true;
-    }
-    if (board[2] === currentPlayer && board[4] === currentPlayer && board[6] === currentPlayer) {
-        return true;
-    }
-    return false;
+function checkWin(player) {
+    const wins = [
+        [0,1,2],[3,4,5],[6,7,8], // rows
+        [0,3,6],[1,4,7],[2,5,8], // cols
+        [0,4,8],[2,4,6]          // diagonals
+    ];
+    return wins.some(([a,b,c]) => board[a] === player && board[b] === player && board[c] === player);
 }
 
 function updateStatusColor(isWin = false) {
